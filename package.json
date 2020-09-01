@@ -2,7 +2,7 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "vuepress blog",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && gulp"
@@ -11,6 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/sqshada/blog.git"
   },
+  "files": [
+    "dist",
+    "types"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -20,6 +24,7 @@
   "dependencies": {
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "merge2": "^1.4.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.0.2"
   },
