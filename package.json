@@ -3,20 +3,27 @@
   "version": "1.0.0",
   "description": "vuepress blog",
   "main": "dist/index.js",
-  "scripts": {
-    "test": "jest --bail --coverage",
-    "prebuild": "npm run lint && npm run prettier && npm run test",
-    "build": "npm run lint && rimraf dist types && gulp",
-    "lint": "eslint src test --max-warnings 0",
-    "prettier": "prettier src test  --write"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sqshada/blog.git"
-  },
   "files": [
     "dist",
     "types"
+  ],
+  "scripts": {
+    "lint": "eslint src test --max-warnings 0",
+    "prettier": "prettier src test --write",
+    "test": "jest --bail --coverage",
+    "prebuild": "npm run lint && npm run prettier && npm run test",
+    "build": "rimraf dist types && gulp",
+    "changelog": "rimraf CHANGELOG.md && conventional-changelog -p angular -i CHANGELOG.md -s",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziyi2/algorithms.git"
+  },
+  "keywords": [
+    "algorithms",
+    "typescript"
   ],
   "author": "",
   "license": "ISC",
@@ -24,12 +31,37 @@
     "url": "https://github.com/sqshada/blog/issues"
   },
   "homepage": "https://github.com/sqshada/blog#readme",
-  "dependencies": {
+  "devDependencies": {
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "@types/jest": "^26.0.4",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "conventional-changelog-cli": "^2.0.34",
+    "cz-customizable": "^6.2.1",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-jest": "^23.18.0",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "lint-staged": "^10.2.13",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
     "merge2": "^1.4.1",
-    "rimraf": "^3.0.2"
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.9.6",
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-cat": "^1.0.3",
+    "vuepress-plugin-mathjax": "^1.2.8",
+    "vuepress-plugin-typescript": "^0.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   },
   "husky": {
     "hooks": {
@@ -37,32 +69,11 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "devDependencies": {
-    "@commitlint/cli": "^9.1.2",
-    "@commitlint/config-conventional": "^9.1.2",
-    "@types/jest": "^26.0.12",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.8.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-jest": "^23.20.0",
-    "husky": "^4.2.5",
-    "jest": "^26.4.2",
-    "prettier": "^2.1.1",
-    "ts-jest": "^26.3.0",
-    "typescript": "^4.0.2"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "lint-staged": {
     "*.ts": [
       "npm run lint",
-      "npm run jest",
-      "npm run prettier"
+      "npm run prettier",
+      "npm run test"
     ]
   }
 }
