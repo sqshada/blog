@@ -11,7 +11,14 @@
     // 禁止对同一个文件的不一致的引用
     "forceConsistentCasingInFileNames": true,
     // 报错时不生成输出文件
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src"]
+   // 编译器默认包含的编译文件
+   "include": ["src/**/*", "test/**/*"],
+   // 编译器默认排除的编译文件
+   "exclude": ["node_modules"]
 }
